@@ -8,5 +8,5 @@ Instructions for compiling MPI codes:
     * ./a.out
 * mpic++ -std=c++1y MPI.cpp
    *  mpirun -np 3 a.out
-* mpic++ -std=c++1y MPI.cpp
+* mpic++ -std=c++1y ParallelWindroseReduce.cpp
    * mpirun -np 3 a.out
