@@ -18,4 +18,4 @@ instructions for compiling OpenMP code:
 
 To run,
 
- * ./Parallel01_01.o
+ * ./Parallel01_01

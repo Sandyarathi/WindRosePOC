@@ -28,7 +28,7 @@ const int NUM_OF_SECTORS = 16;
 const int NUM_OF_SPEED = 5;
 const int NUM_OF_MAX_THREADS = 4;
 const float DELTA_BUCKET = ((float)360/(float)NUM_OF_SECTORS); //equals to 22.5 degrees
-string sId = "H0024";
+
 
 
 struct measurements{
@@ -42,59 +42,75 @@ int calcDirectBin(float winDir);
 
 measurements getMeas(string str);
 
-void aggData(string fileName, int wr[][NUM_OF_SPEED]);
+void aggData(string fileName, string stationId, int wr[][NUM_OF_SPEED]);
 
 vector<string> readFileList(string filepath);
 
 int main(){
-	struct timeval start, end;
-	double delta;
 
-	gettimeofday(&start, NULL);
+	cout<<"Hello World!!.."<< endl;
+	char response;
 
-	cout << "Hello world!! \n" << endl;
+	do{
+			struct timeval start, end;
+			double delta;
 
-	int wr[NUM_OF_SECTORS][NUM_OF_SPEED]= {0};
+			gettimeofday(&start, NULL);
+			string stationId;
 
-	omp_set_num_threads(NUM_OF_MAX_THREADS);
+			cout<<"Please enter the station Id"<< endl;
+			cin>> stationId;
 
-	string fileListpath = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/files.txt";
-	string path = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/";
+			int wr[NUM_OF_SECTORS][NUM_OF_SPEED]= {0};
 
-	vector<string> vectorOfFilePaths = readFileList(fileListpath);
+			omp_set_num_threads(NUM_OF_MAX_THREADS);
 
-	#pragma omp parallel
-	{
-		int local_wr[NUM_OF_SECTORS][NUM_OF_SPEED] = {0};
-		#pragma omp for nowait
-		for(int i=0; i<vectorOfFilePaths.size(); i++){
-			aggData(path + vectorOfFilePaths[i],local_wr);
-		}
+			string fileListpath = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/files.txt";
+			string path = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/";
 
-		for(int m=0; m< NUM_OF_SECTORS; m++){
-				for(int n=0; n< NUM_OF_SPEED; n++){
-					#pragma omp atomic
-					wr[m][n] += local_wr[m][n];
+			vector<string> vectorOfFilePaths = readFileList(fileListpath);
+
+			#pragma omp parallel
+			{
+				int local_wr[NUM_OF_SECTORS][NUM_OF_SPEED] = {0};
+				#pragma omp for nowait
+				for(int i=0; i< vectorOfFilePaths.size(); i++){
+					aggData(path + vectorOfFilePaths[i],stationId, local_wr);
+					//aggData("../Dataset/07-01_mesonet-20010701_2200.csv", stationId, local_wr);
 				}
-		}
-	}
+
+				for(int m=0; m< NUM_OF_SECTORS; m++){
+						for(int n=0; n< NUM_OF_SPEED; n++){
+							#pragma omp atomic
+							wr[m][n] += local_wr[m][n];
+						}
+				}
+			}
 
 
-	cout<<"***** printing 2D array for windrose algorithm *****" << endl << endl;
-	//#pragma omp parallel for
-	for(int m=0; m< NUM_OF_SECTORS; m++){
-		for(int n=0; n< NUM_OF_SPEED; n++){
-			cout << wr[m][n] << "               ";
-		}
-		cout << endl;
-	}
+			cout<<"***** printing 2D array for windrose algorithm *****" << endl << endl;
+			//#pragma omp parallel for
+			for(int m=0; m< NUM_OF_SECTORS; m++){
+				for(int n=0; n< NUM_OF_SPEED; n++){
+					cout << wr[m][n] << "               ";
+				}
+				cout << endl;
+			}
 
-	gettimeofday(&end, NULL);
-	delta = (end.tv_sec  - start.tv_sec) +
-	         ((end.tv_usec - start.tv_usec) / 1.e6);
+			gettimeofday(&end, NULL);
+			delta = (end.tv_sec  - start.tv_sec) +
+			         ((end.tv_usec - start.tv_usec) / 1.e6);
 
-	cout<< endl;
-	printf("%.6lf seconds elapsed\n", delta);
+			cout<< endl;
+			printf("%.6lf seconds elapsed\n", delta);
+
+
+			cout<<"Do you want to continue? Y or N?"<<endl;
+			cin>> response;
+
+	}while(response == 'Y');
+
+
 }
 
 int calcSpeedsBin(float winSpd) {
@@ -161,7 +177,7 @@ measurements getMeas(string line){
 	return meas;
 }
 
-void aggData(string fileName, int wr[][NUM_OF_SPEED]){
+void aggData(string fileName, string stationId, int wr[][NUM_OF_SPEED]){
 
 	ifstream inputFile(fileName);
 	string line;
@@ -170,7 +186,7 @@ void aggData(string fileName, int wr[][NUM_OF_SPEED]){
 
 	while (getline(inputFile, line)) {
 
-			size_t found = line.find(sId);
+			size_t found = line.find(stationId);
 
 			if(found!= string::npos){
 				m1 = getMeas(line);

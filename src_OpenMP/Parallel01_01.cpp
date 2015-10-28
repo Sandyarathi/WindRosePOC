@@ -40,7 +40,7 @@ int calcSpeedsBin(float winSpd);
 
 int calcDirectBin(float winDir);
 
-void readData(MesoData & inputData, vector<string> List);
+void readData(MesoData & inputData, vector<string> List, string stationId);
 
 void aggData(MesoData & inputData, outputData & outData);
 
@@ -48,50 +48,65 @@ vector<string> readFileList(string filepath);
 
 
 int main(){
-	struct timeval start, end;
-	double delta;
 
-	gettimeofday(&start, NULL);
-	cout<<"Hello World... I am processing.." << endl << endl;
+	cout<<"Hello World!!.."<< endl;
+	char response;
 
-	string fileListpath = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/files.txt";
-	vector<string> vectorOfFilePaths = readFileList(fileListpath);
+	do{
+			struct timeval start, end;
+			double delta;
 
-	MesoData inputData = {MAX_NUM_DATA_POINTS,
-				0,
-				(float*)calloc(MAX_NUM_DATA_POINTS, sizeof(float)),
-				(float*)calloc(MAX_NUM_DATA_POINTS, sizeof(float))
-		};
+			gettimeofday(&start, NULL);
+			string stationId;
 
-	outputData outData;
+			cout<<"Please enter the station Id"<< endl;
+			cin>> stationId;
 
-	for(int i=0; i<NUM_OF_SECTORS; i++){
-			for(int j=0; j<NUM_OF_SPEED; j++){
-				outData[i][j] = 0;
+			string fileListpath = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/files.txt";
+			vector<string> vectorOfFilePaths = readFileList(fileListpath);
+
+			MesoData inputData = {MAX_NUM_DATA_POINTS,
+						0,
+						(float*)calloc(MAX_NUM_DATA_POINTS, sizeof(float)),
+						(float*)calloc(MAX_NUM_DATA_POINTS, sizeof(float))
+				};
+
+			outputData outData;
+
+			for(int i=0; i<NUM_OF_SECTORS; i++){
+					for(int j=0; j<NUM_OF_SPEED; j++){
+						outData[i][j] = 0;
+					}
+				}
+
+			readData(inputData, vectorOfFilePaths, stationId);
+
+			aggData(inputData, outData);
+
+			cout<<"******************** Printing final 2D array *******************************"<< endl;
+			for(int i=0; i<NUM_OF_SECTORS; i++){
+				for(int j=0; j<NUM_OF_SPEED; j++){
+					cout<< outData[i][j] << "\t";
+				}
+				cout << endl;
 			}
-		}
 
-	readData(inputData, vectorOfFilePaths);
+			gettimeofday(&end, NULL);
+			delta = (end.tv_sec  - start.tv_sec) +
+				         ((end.tv_usec - start.tv_usec) / 1.e6);
 
-	aggData(inputData, outData);
+			//cout<< endl;
+			printf("%.6lf seconds elapsed\n", delta);
 
-	cout<<"******************** Printing final 2D array *******************************"<< endl;
-	for(int i=0; i<NUM_OF_SECTORS; i++){
-		for(int j=0; j<NUM_OF_SPEED; j++){
-			cout<< outData[i][j] << "\t";
-		}
-		cout << endl;
-	}
+			free(inputData.windDir);
+			free(inputData.windSpd);
 
-	gettimeofday(&end, NULL);
-	delta = (end.tv_sec  - start.tv_sec) +
-		         ((end.tv_usec - start.tv_usec) / 1.e6);
+			cout<<"Do you want to continue? Y or N?"<<endl;
+			cin>> response;
 
-	//cout<< endl;
-	printf("%.6lf seconds elapsed\n", delta);
+	}while(response == 'Y');
 
-	free(inputData.windDir);
-	free(inputData.windSpd);
+
 
 }
 
@@ -140,9 +155,9 @@ int calcDirectBin(float winDir) {
 }
 
 
-void readData(MesoData & inputData, vector<string> List) {
+void readData(MesoData & inputData, vector<string> List, string stationId) {
 
-	string line, stationId="H0024";
+	string line;
 	string path = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/";
 	int count = 0;
 	//cout<<"File list size: "<<List.size()<<endl;
@@ -150,7 +165,7 @@ void readData(MesoData & inputData, vector<string> List) {
 			//cout<<"FileName:"<<List[i]<<endl;
 			ifstream inputFile(path + List[i]);
 
-			//ifstream inputFile("Dataset/07-01_mesonet-20010701_2200.csv");
+			//ifstream inputFile("../Dataset/07-01_mesonet-20010701_2200.csv");
 			string rowData[6] ;
 			string token;
 			int j = 0;
