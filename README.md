@@ -21,20 +21,18 @@ Source folder: src_MPI
       * g++ -std=c++1y SerialModified.cpp
       * ./a.out
       * Observation : Takes considerably less time to process the files. (~15 seconds for two station ids)
-   3.MPITaskDivision.cpp : Parallelized code using OpenMPI Send and receive prototypes that spawns two processes to process data                            for two station ids.
+   3.MPITaskDivision.cpp : Parallelized code using OpenMPI Send and receive prototypes that spawns two processes 
+                           to process data for two station ids.
       * mpic++ -std=c++1y MPITaskDivision.cpp
       * mpirun -np 2 a.out
       * Observation : Gives 2x performance when compared to the Serial code. (~8 seconds for two station ids)
-   4.MP+MPI.cpp : Hybrid parallelized code optimized using Open MPI send and receive prototypes and openMP parallel for pragma                    directives.
+   4.MP+MPI.cpp : Hybrid parallelized code optimized using Open MPI send and receive prototypes and openMP parallel for 
+                  pragma directives.
       * mpic++ -fopenmp -std=c++1y MP+MPI.cpp
       * mpirun -np 3 a.out
       * Observation : Gives 2x performance. (~7 seconds)
 ```
-
-Instructions for compiling OpenMP code:
-
-* g++ -fopenmp -std=c++11 Parallel01_01.cpp -o Parallel01_01
-
-To run,
-
- * ./Parallel01_01
+```Instructions for compiling OpenMP code:
+      1.g++ -fopenmp -std=c++11 Parallel01_01.cpp -o Parallel01_01
+      2.To run : ./Parallel01_01
+```
