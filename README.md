@@ -33,6 +33,8 @@ Source folder: src_MPI
       * Observation : Gives 2x performance. (~7 seconds)
 
 Instructions for compiling OpenMP code:
+
    1.g++ -fopenmp -std=c++11 Parallel01_01.cpp -o Parallel01_01
    2.To run : ./Parallel01_01
+   3.Example station ids to give at run time : "E3467", "A28";
 ```
