@@ -67,5 +67,5 @@ Compilation with Swig Instructions:
    
 Using Swig in higher level language
 
-   >>>import outputfile
-   >>>outputfile.callFunction()
+   1. import outputfile
+   2. outputfile.callFunction()
