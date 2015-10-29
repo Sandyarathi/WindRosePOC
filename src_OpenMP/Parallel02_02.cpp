@@ -71,8 +71,8 @@ int main(){
 
 			omp_set_num_threads(NUM_OF_MAX_THREADS);
 
-			string fileListpath = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/files.txt";
-			string path = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/";
+			string fileListpath= "../Data/fileList.txt";
+			string path = "../Data/";
 
 			vector<string> vectorOfFilePaths = readFileList(fileListpath);
 
