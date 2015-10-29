@@ -32,6 +32,16 @@ Source folder: src_MPI
       * mpirun -np 3 a.out
       * Observation : Gives 2x performance. (~7 seconds)
 
+
+Description of OpenMP Files:
+src_OpenMP/Serial01.cpp : Algorithm# 1 Storing Filtered Raw Data in a Local Container 
+src_OpenMP/Parallel01_01.cpp : Strategy# 1 Parallelising data processing using local containers3
+src_OpenMP/Parallel01_02.cpp : Strategy# 2 Parallelising data read and processing
+src_OpenMP/Parallel01_03.cpp : Strategy# 3 Parallelising data processing by accessing elements according to the fixed strip width
+src_OpenMP/Serial02.cpp : Algorithm# 2  Without Using a Local Container for Storing Input Raw Data
+src_OpenMP/Parallel02_01: Strategy# 1 Parallelising data read and processing using 2-D local containers
+src_OpenMP/Parallel02_02: Strategy# 2 Parallelising data read and processing using 3-D shared container
+
 Instructions for compiling OpenMP code:
 
    1.g++ -fopenmp -std=c++11 Parallel01_01.cpp -o Parallel01_01
