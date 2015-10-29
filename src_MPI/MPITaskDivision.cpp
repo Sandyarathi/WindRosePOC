@@ -87,7 +87,8 @@ MesoData getMeas(string line){
 
 void readData(string stationId,string fileName, int wr[][SPEED_BUCKETS]){
 	//cout<<"station:"<<stationId<<endl;
-	string path ="/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/";
+	//string path ="/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/";
+	string path = "../Data/"
 	ifstream inputFile1(path+fileName);
 	string line;
 	MesoData mesoData;
@@ -107,7 +108,8 @@ void readData(string stationId,string fileName, int wr[][SPEED_BUCKETS]){
 
 
 int main(int argc, char* argv[]) {
-	string fileListpath = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/files.txt";
+	//string fileListpath = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/files.txt";
+	string fileListpath = "../Data/fileList.txt"
 	ifstream inputfile(fileListpath);
 	string line, path;
 	vector<string> vectorOfFilePaths;
