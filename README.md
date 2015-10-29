@@ -2,7 +2,7 @@
 CMPE275 : Project1 Submission Repository
 ```
 -Actual data size: ~200GB not included in the folder.
--Sample data size: ~5GB included in the project Data folder.
+-Sample data size: ~0.5GB included in the project Data folder.
 -Performance tested on: 2.5GHz dual-core Intel Core i5 processor (Turbo Boost up to 3.1GHz) with 3MB L3 cache
 -Instructions to Run the Project:
    1.Clone the repo
