@@ -91,7 +91,8 @@ MesoData getMeas(string line){
 
 
 void readData(string sId,string fileName, int wr[][SPEED_BUCKETS]){
-	string path ="/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/";
+	//string path ="/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/";
+	string path = "../Data/";
 	ifstream inputFile1(path+fileName);
 	string line;
 	MesoData mesoData;
@@ -111,7 +112,8 @@ void readData(string sId,string fileName, int wr[][SPEED_BUCKETS]){
 
 
 int main(int argc, char* argv[]) {
-	string fileListpath = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/files.txt";
+	//string fileListpath = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/files.txt";
+	string fileListpath= "../Data/fileList.txt";
 	int wr1[NUM_OF_SECTORS][SPEED_BUCKETS]= {0};
 	int wr2[NUM_OF_SECTORS][SPEED_BUCKETS]= {0};
 	string sId1 = "H0024", sId2 = "AR628";
