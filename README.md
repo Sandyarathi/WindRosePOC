@@ -48,3 +48,24 @@ Instructions for compiling OpenMP code:
    2.To run : ./Parallel01_01.O
    3.Example station ids to give at run time : "E3467", "A28";
 ```
+Swig Instructions:
+   
+   1. Make an interface file named "filname.i".
+   2. Add the module name that you want to use in your higher level language(like python).
+   3. Add required header files and functions that you want to use in the %{""""""" %} section.
+   4. Now compile the file using swig.
+   
+Compilation with Swig Instructions:
+
+   Use the following commands for compilation (Don't include "" in your commands)   
+
+   1. swig -c++ -python "filename.i"
+   2. g++ -c -fpic -fopenmp "filename.cpp"
+   3. g++ -c -fpic -fopenmp "filename_wrap.cxx" -I "path to <Python.h>"
+   4. g++ -shared "cpp oject file" "wraper object file" -o "_outpufile.so" -fopenmp
+   5. Go to Python console(use command python).
+   
+Using Swig in higher level language
+
+   >>>import outputfile
+   >>>outputfile.callFunction()
