@@ -62,7 +62,7 @@ int main(){
 			cout<<"Please enter the station Id"<< endl;
 			cin>> stationId;
 
-			string fileListpath = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/files.txt";
+			string fileListpath= "../Data/fileList.txt";
 			vector<string> vectorOfFilePaths = readFileList(fileListpath);
 
 			MesoData inputData = {MAX_NUM_DATA_POINTS,
@@ -158,7 +158,7 @@ int calcDirectBin(float winDir) {
 void readData(MesoData & inputData, vector<string> List, string stationId) {
 
 	string line;
-	string path = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/";
+	string path = "../Data/";
 	int count = 0;
 	//cout<<"File list size: "<<List.size()<<endl;
 	for (int i = 0; i < List.size(); i++) {
