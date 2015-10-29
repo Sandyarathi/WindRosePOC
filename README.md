@@ -35,7 +35,7 @@ Source folder: src_MPI
 
 Description of OpenMP Files:
 src_OpenMP/Serial01.cpp : Algorithm# 1 Storing Filtered Raw Data in a Local Container 
-src_OpenMP/Parallel01_01.cpp : Strategy# 1 Parallelising data processing using local containers3
+src_OpenMP/Parallel01_01.cpp : Strategy# 1 Parallelising data processing using local containers
 src_OpenMP/Parallel01_02.cpp : Strategy# 2 Parallelising data read and processing
 src_OpenMP/Parallel01_03.cpp : Strategy# 3 Parallelising data processing by accessing elements according to the fixed strip width
 src_OpenMP/Serial02.cpp : Algorithm# 2  Without Using a Local Container for Storing Input Raw Data
