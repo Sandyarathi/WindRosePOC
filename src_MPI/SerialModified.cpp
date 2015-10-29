@@ -116,7 +116,7 @@ int main(int argc, char* argv[]) {
 	string fileListpath= "../Data/fileList.txt";
 	int wr1[NUM_OF_SECTORS][SPEED_BUCKETS]= {0};
 	int wr2[NUM_OF_SECTORS][SPEED_BUCKETS]= {0};
-	string sId1 = "H0024", sId2 = "AR628";
+	string sId1 = "E3467", sId2 = "A28";
 	ifstream inputfile(fileListpath);
 	string line, path;
 	vector<string> vectorOfFilePaths;

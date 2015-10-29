@@ -122,7 +122,7 @@ int main(int argc, char* argv[]) {
 	double delta;
 	gettimeofday(&start, NULL);
 	MPI::Init(argc, argv);
-	string sId1 = "H0024", sId2 = "AR628";
+	string sId1 = "E3467", sId2 = "A28";
 	string station;
 	rank_of_process=MPI::COMM_WORLD.Get_rank();
 	no_of_processes=MPI::COMM_WORLD.Get_size();
