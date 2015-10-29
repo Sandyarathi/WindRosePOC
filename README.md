@@ -31,8 +31,8 @@ Source folder: src_MPI
       * mpic++ -fopenmp -std=c++1y MP+MPI.cpp
       * mpirun -np 3 a.out
       * Observation : Gives 2x performance. (~7 seconds)
-```
-```Instructions for compiling OpenMP code:
-      1.g++ -fopenmp -std=c++11 Parallel01_01.cpp -o Parallel01_01
-      2.To run : ./Parallel01_01
+
+Instructions for compiling OpenMP code:
+   1.g++ -fopenmp -std=c++11 Parallel01_01.cpp -o Parallel01_01
+   2.To run : ./Parallel01_01
 ```
