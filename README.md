@@ -44,7 +44,7 @@ src_OpenMP/Parallel02_02: Strategy# 2 Parallelising data read and processing usi
 
 Instructions for compiling OpenMP code:
 
-   1.g++ -fopenmp -std=c++11 Parallel01_01.cpp -o Parallel01_01
-   2.To run : ./Parallel01_01
+   1.g++ -fopenmp -std=c++11 Parallel01_01.cpp -o Parallel01_01.O
+   2.To run : ./Parallel01_01.O
    3.Example station ids to give at run time : "E3467", "A28";
 ```
