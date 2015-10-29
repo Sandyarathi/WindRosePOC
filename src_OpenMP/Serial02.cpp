@@ -57,8 +57,9 @@ int main(){
 
 			int wr[NUM_OF_SECTORS][NUM_OF_SPEED]= {0};
 
-			string fileListpath = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/files.txt";
-			string path = "/Users/sandyarathidas/Documents/CMPE275_Sandy/Project1/mesonet1/";
+			string fileListpath= "../Data/fileList.txt";
+			string path = "../Data/";
+
 
 			vector<string> vectorOfFilePaths = readFileList(fileListpath);
 
